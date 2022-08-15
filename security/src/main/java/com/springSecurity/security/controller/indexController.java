@@ -19,46 +19,46 @@ public class indexController {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @GetMapping("/")
-    public String index() {
+//    @GetMapping("/")
+//    public String index() {
+//
+//        return "index";
+//    }
 
-        return "index";
-    }
+//    @GetMapping("/user")
+//    public @ResponseBody String user() {
+//        return "user";
+//    }
+//
+//    @GetMapping("/admin")
+//    public @ResponseBody String admin() {
+//        return "admin";
+//    }
+//
+//    @GetMapping("/manager")
+//    public @ResponseBody String manager() {
+//        return "manager";
+//    }
+//
+//    @GetMapping("/loginForm")
+//    public String login() {
+//        return "loginForm";
+//    }
+//
+//    @GetMapping("/joinForm")
+//    public String joinForm() {
+//        return "joinForm";
+//    }
 
-    @GetMapping("/user")
-    public @ResponseBody String user() {
-        return "user";
-    }
-
-    @GetMapping("/admin")
-    public @ResponseBody String admin() {
-        return "admin";
-    }
-
-    @GetMapping("/manager")
-    public @ResponseBody String manager() {
-        return "manager";
-    }
-
-    @GetMapping("/loginForm")
-    public String login() {
-        return "loginForm";
-    }
-
-    @GetMapping("/joinForm")
-    public String joinForm() {
-        return "joinForm";
-    }
-
-    @PostMapping("/join")
-    public String join(User user) {
-        user.setRole("ROLE_USER");
-        String rawPassword = user.getPassword();
-        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
-        user.setPassword(encPassword);
-        userRepository.save(user);
-        return "redirect:/loginForm";
-    }
+//    @PostMapping("/join")
+//    public String join(User user) {
+//        user.setRole("ROLE_USER");
+//        String rawPassword = user.getPassword();
+//        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+//        user.setPassword(encPassword);
+//        userRepository.save(user);
+//        return "redirect:/loginForm";
+//    }
 
     @Secured("ROLE_ADMIN") // 특정 메서드에 권한 부여할때 사용
     @GetMapping("/info")

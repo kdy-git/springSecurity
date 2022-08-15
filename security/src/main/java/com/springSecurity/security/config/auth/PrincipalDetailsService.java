@@ -2,6 +2,7 @@ package com.springSecurity.security.config.auth;
 
 import com.springSecurity.security.model.User;
 import com.springSecurity.security.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,10 +14,10 @@ import org.springframework.stereotype.Service;
 // 이건 시큐리티 실행 규칙임. 외워야함
 //loadUserByUsername 파라미터로 들어가는 String username 값은 반드시 form문에서 전달하는 name값과 똑같아야함.
 @Service
+@RequiredArgsConstructor
 public class PrincipalDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     //시큐리티 session(Authentication(userdetails))
     //아래 함수 발동되면 user 데이터를 담은 객체가 userDetails 타입으로 리턴 -> Authentication 내부의 userDetails 객체로 들어감

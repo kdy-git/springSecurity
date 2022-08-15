@@ -11,12 +11,14 @@ package com.springSecurity.security.config.auth;
 //어떻게?
 
 import com.springSecurity.security.model.User;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Data
 public class PrincipalDetails implements UserDetails {
 
     private User user;
@@ -25,17 +27,27 @@ public class PrincipalDetails implements UserDetails {
         this.user = user;
     }
 
-    //해당 유저의 권한을 리턴하는 곳
+//    //해당 유저의 권한을 리턴하는 곳
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        Collection<GrantedAuthority> collection = new ArrayList<>();
+//        collection.add(new GrantedAuthority() {
+//            @Override
+//            public String getAuthority() {
+//                return user.getRole();
+//            }
+//        });
+//        return collection;
+//    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> collection = new ArrayList<>();
-        collection.add(new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return user.getRole();
-            }
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        user.getRoleList().forEach(r-> {
+            authorities.add(()-> r);
         });
-        return collection;
+
+        return authorities;
     }
 
     @Override
