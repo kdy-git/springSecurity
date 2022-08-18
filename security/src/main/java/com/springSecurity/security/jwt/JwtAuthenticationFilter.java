@@ -88,7 +88,5 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         //http header에 Authorization 이름으로 토큰 담아줌
         response.addHeader("Authorization", "Bearer " + jwtToken);
         System.out.println("HTTP HEADER. Authorization : " + response.getHeader("Authorization"));
-
-        super.successfulAuthentication(request, response, chain, authResult);
     }
 }
